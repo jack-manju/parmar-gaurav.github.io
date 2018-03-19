@@ -1,0 +1,40 @@
+<html>
+<head></head>
+<title> Groovy: parsing XML and storing attribute values to variables
+</title>
+<body>
+How to Parse Specific value from multiple elements in single attribute of xml file ?
+
+<h2> XML file format </h2>
+<detailedreport 
+xmlns="https://www.veracode.com/schema/reports/export/1.0" 
+xsi:schemaLocation="https://www.veracode.com/schema/reports/export/1.0 schema.xsd" 
+report_format_version="string" 
+app_name="string" 
+app_id="-2888" 
+sandbox_name="string" 
+sandbox_id="-9105" 
+first_build_submitted_date="string" 
+version="string" 
+build_id="-2522" vendor="string" submitter="string" platform="string" assurance_level="-6238" business_criticality="8468" 
+generation_date="string" veracode_level="string" total_flaws="9332" flaws_not_mitigated="-3860" teams="string" life_cycle_stage="string" 
+planned_deployment_date="string" last_update_time="string" is_latest_build="0" policy_name="string" policy_version="4919" policy_compliance_status="string"
+ policy_rules_status="string" grace_period_expired="false" scan_overdue="string" any_type_scan_due="string" business_owner="string" business_unit="string" 
+ tags="string" legacy_scan_engine="0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+
+<h3> Groovy script to parse value of App_id & sandbox_id & sandbox_name </h3>
+
+XmlParser parser = new XmlParser()
+def xml= readFile "${env.WORKSPACE}/vera.xml"
+def xmldata1 = parser.parseText(xml)
+       
+def str1 = xmldata1.attributes().app_id
+def str2 = xmldata1.attributes().sandbox_name
+def str3 =  xmldata1.attributes().sandbox_id
+println(str2)
+println(str3)
+
+</body>
+
+</html>
